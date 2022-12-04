@@ -1,0 +1,15 @@
+with open('input.txt') as f:
+    data = [x.split('x') for x in f.read().strip().split()]
+
+paper_area = 0
+ribbon_length = 0
+for row in data:
+    a, b, c = row
+    length = int(a)
+    width = int(b)
+    height = int(c)
+    paper_area += 2*length*width + 2*width*height + 2*height*length + min(length*width, width*height, height*length)
+    ribbon_length += 2*min(length, width, height) + sorted([length, width, height])[1]*2 + length*height*width
+
+print(paper_area, ribbon_length)
+
